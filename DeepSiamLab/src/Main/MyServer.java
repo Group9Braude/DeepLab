@@ -1,4 +1,4 @@
-package Server;
+package Main;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
