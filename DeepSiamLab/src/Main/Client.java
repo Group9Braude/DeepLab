@@ -8,21 +8,26 @@ public class Client extends AbstractClient {
 
 	public Client() {
 		super(Main.host, Main.port);
-		try {this.openConnection();} catch (IOException e) {e.printStackTrace();}
+		try {
+			this.openConnection();
+		} catch (IOException e) {
+			System.out.println("caught");
+			e.printStackTrace();
+		}
 	}
 	
-	public void sendServer(Object msg, String actionNow){
-			try {this.sendToServer(msg);} catch (Exception e) {e.printStackTrace();}
-	}
 	
-	public void onLogin(){
-		BCD bcd = new BCD();
-		sendServer(bcd, "");
-	}
 
 	@Override
 	protected void handleMessageFromServer(Object msg) {
-		
+		System.out.println("handleMessageFromServer");
+		switch(((GeneralMessage)msg).actionNow){
+		case "Incorrect":
+			Worker.setCurrentWorker(new Worker());
+			System.out.println("inc");break;
+		case "Correct":
+			Worker.setCurrentWorker((Worker)msg);System.out.println("c");break;
+		}
 	}
 
 }

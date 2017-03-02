@@ -16,20 +16,21 @@ public class Main extends Application {
 	public static Stage popup;
 	private static Stage primaryStage;
 	public static Parent mainLayout;
-	public static int port=1433;
-	public static String host = "188.121.44.212";
+	public static int port=3306;
+	public static String host = "localhost";
 
 	public void start(Stage primaryStage) throws IOException {
 		Main.primaryStage = primaryStage;
-		popup = new Stage();
+		popup = new Stage(); 
      //   primaryStage.getIcons().add(new Image("/src/41.png"));
         primaryStage.setTitle("Deep Siam Lab");
 		popup.initModality(Modality.APPLICATION_MODAL);
 		popup.initOwner(primaryStage);
-		showMenu("MainMenu");
+		showMenu("MainScreen");
 	}
 	
 	public static void showMenu(String screen) throws IOException{
+		System.out.println("hi");
 		FXMLLoader loader = new FXMLLoader(); 
 		loader.setLocation(Main.class.getResource("/GUI/" + screen + ".fxml"));
 		mainLayout = loader.load();

@@ -7,6 +7,7 @@ public class Worker extends GeneralMessage{
 	private static final long serialVersionUID = 1L;
 	private String ID,fName,lName,email;
 	private int isManager;//Only one manager exists
+	private static Worker currentWorker;
 	public Worker(){}
 	public Worker(String ID,String fName,String lName,String email,int isManager)
 	{
@@ -45,5 +46,11 @@ public class Worker extends GeneralMessage{
 	}
 	public void setIsManager(int isManager) {
 		this.isManager = isManager;
+	}
+	public static Worker getCurrentWorker() {
+		return currentWorker;
+	}
+	public static void setCurrentWorker(Worker currentWorker) {
+		Worker.currentWorker = currentWorker;
 	}
 }	
