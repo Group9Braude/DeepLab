@@ -1,6 +1,6 @@
 package Entities;
 
-public class Tank {
+public class Tank extends GeneralMessage{
 	private String deepNum/*A serial number written by the diving club*/,
 	serialNum/*A serial number written by the manufacturer*/,
 	volume,manufacturer;

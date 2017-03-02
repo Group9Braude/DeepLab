@@ -16,6 +16,8 @@ public class Main extends Application {
 	public static Stage popup;
 	private static Stage primaryStage;
 	public static Parent mainLayout;
+	public static int port=1433;
+	public static String host = "188.121.44.212";
 
 	public void start(Stage primaryStage) throws IOException {
 		Main.primaryStage = primaryStage;
@@ -38,7 +40,6 @@ public class Main extends Application {
 	public static void setPrimaryStage(Stage primaryStage) {
 		Main.primaryStage = primaryStage;
 	}
-	
 
 	
 	public static void main(String[] args) 

@@ -1,6 +1,10 @@
 package Entities;
 
-public class CCR {
+public class CCR extends GeneralMessage{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 private String serialNum, manufacturer, owner;
 
 public String getSerialNum() {

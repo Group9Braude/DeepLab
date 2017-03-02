@@ -1,6 +1,6 @@
 package Entities;
 
-public class Regulator {
+public class Regulator extends GeneralMessage{
 	private String model,manufacturer,serialNum,KitChangeDate;
 	private int deepNum,interPressure;
 	

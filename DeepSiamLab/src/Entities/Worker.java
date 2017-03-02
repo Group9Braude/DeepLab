@@ -1,6 +1,10 @@
 package Entities;
 
-public class Worker {
+public class Worker extends GeneralMessage{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String ID,fName,lName,email;
 	private int isManager;//Only one manager exists
 	public Worker(){}

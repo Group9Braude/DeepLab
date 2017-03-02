@@ -2,7 +2,7 @@ package Entities;
 
 import java.sql.Date;
 
-public class RegCheck {
+public class RegCheck extends GeneralMessage{
 	private String FixDescription/*isProblemFix*/,deepNum,customerID;
 	private Date date;
 	private int isFinished;//After treatment is done,set 1

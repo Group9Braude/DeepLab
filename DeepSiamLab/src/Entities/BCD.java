@@ -1,6 +1,10 @@
 package Entities;
 
-public class BCD {
+public class BCD extends GeneralMessage {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 private String deepNum, size, model, manufacturer;
 
 public String getDeepNum() {

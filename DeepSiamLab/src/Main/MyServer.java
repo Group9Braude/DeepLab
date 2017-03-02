@@ -15,23 +15,11 @@ import java.util.Collections;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 
-
-
-
-
-
 public class MyServer extends AbstractServer {    
 	Connection conn;
+	
 	public static void main(String[] args) {
-		int port =3306;
-		try {
-			port = Integer.parseInt(args[0]);
-		}
-		catch (Throwable t) {
-			port = 3306;
-		}
-		@SuppressWarnings("unused")
-		MyServer s1 = new MyServer(port);
+		MyServer s = new MyServer(Main.port);
 	}
 
 	public MyServer(int port) {
@@ -47,18 +35,15 @@ public class MyServer extends AbstractServer {
 
 	public void connectToDB() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-		}
-		catch (Exception var1_1) {
-		}
-		try {
 			try {
 				Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 				}
 			this.conn = DriverManager.getConnection("jdbc:sqlserver://188.121.44.212:1433;databaseName=orel;", "orelDeepdivers", "1qaz2wsx");
-			System.out.println("MySQL Login Successful!");
+			System.out.println("SQL Server Login Successful!");
+
+
 
 
 		}
@@ -72,5 +57,15 @@ public class MyServer extends AbstractServer {
 	@Override
 	protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
 		
+		Statement stmt;
+		try {
+			
+			stmt = conn.createStatement();
+		ResultSet rs = null;
+			rs = stmt.executeQuery("Select * From orelDeepdivers.Workers");
+			while(rs.next())
+				System.out.println(rs.getString(1));
+			
+		} catch (SQLException e) {e.printStackTrace();}
 	}
 }

@@ -1,6 +1,6 @@
 package Entities;
 
-public class Customer {
+public class Customer extends GeneralMessage{
 private String name, lastName, custID, email;
 
 public String getName() {
