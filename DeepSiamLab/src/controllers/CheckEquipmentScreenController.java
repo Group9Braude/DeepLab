@@ -1,8 +1,7 @@
-package Controllers;
+package controllers;
 
 import java.io.IOException;
 
-import Main.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Tab;
@@ -10,6 +9,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import main.Main;
 import ocsf.client.AbstractClient;
 public class CheckEquipmentScreenController extends AbstractClient
 {
@@ -31,6 +31,9 @@ public class CheckEquipmentScreenController extends AbstractClient
 
 	public void onContinue()
 	{
+		cleanBox.setTextFill(Color.BLACK);
+		oilBox.setTextFill(Color.BLACK);
+		hoursText.setFill(Color.BLACK);
 		boolean allRight = true;
 		float hours;
 		Tab curTab = allTab.getSelectionModel().getSelectedItem();
@@ -44,7 +47,7 @@ public class CheckEquipmentScreenController extends AbstractClient
 
 			if(!oilBox.isSelected())
 			{
-				cleanBox.setTextFill(Color.RED);
+				oilBox.setTextFill(Color.RED);
 				allRight = false;
 			}
 			if(!hoursTextField.getText().equals(""))

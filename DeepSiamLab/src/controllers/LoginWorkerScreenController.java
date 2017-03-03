@@ -1,10 +1,10 @@
-package Controllers;
+package controllers;
 
 import ocsf.client.AbstractClient;
 
 import java.io.IOException;
 
-import Main.Main;
+import main.Main;
 
 public class LoginWorkerScreenController extends AbstractClient{
 
@@ -17,16 +17,19 @@ public class LoginWorkerScreenController extends AbstractClient{
 		}
 	}
 	
-	public void gotoCheckScreen()
+	public void onCheckEquipment()
 	{
 		try {
-			Main.showMenu("LoginWorkerScreen");
+			Main.showMenu("CheckEquipmentScreen");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	public void onIssueOrder(){
+		try {Main.showMenu("OpenCardScreen");} catch (IOException e) {e.printStackTrace();}
+	}
+	
 	@Override
 	protected void handleMessageFromServer(Object msg) {
 		

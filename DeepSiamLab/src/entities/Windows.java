@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 import java.awt.Window;
 import java.awt.event.ActionEvent;

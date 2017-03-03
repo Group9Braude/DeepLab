@@ -1,11 +1,14 @@
-package Controllers;
+package controllers;
+
+import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-import Entities.*;
-import Main.Client;
+import entities.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import main.Client;
+import main.Main;
 
 public class LoginScreenController {
 	@FXML
@@ -17,7 +20,7 @@ public class LoginScreenController {
 			((GeneralMessage)msg).actionNow = actionNow;
 			Client client = new Client();
 			try {
-				//client.openConnection();
+				client.openConnection();
 				client.sendToServer(msg);
 			} catch (Exception e) {e.printStackTrace();}
 		} catch (Exception e) {	e.printStackTrace();}
@@ -42,14 +45,16 @@ public class LoginScreenController {
 		Worker worker = new Worker();
 		worker.query = "SELECT * FROM orelDeepdivers.Workers WHERE ID = '" + idTextField.getText() + "' AND "
 				+ "Password = '" + passTextField.getText() + "';";
-		System.out.println("Qeury:" + worker.query);
 		Worker.setCurrentWorker(null);
 
 			Worker.setCurrentWorker(null);
 		sendServer(worker, "Login");
-		while(Worker.getCurrentWorker()==null){
-			Sleep(2);
+		while(Worker.getCurrentWorker()==null) Sleep(2);
+		System.out.println("ActionNow : " + Worker.getCurrentWorker().actionNow);
+		if(Worker.getCurrentWorker().actionNow.equals("Correct")){
+			try {Main.showMenu("LoginWorkerScreen");} catch (IOException e) {e.printStackTrace();}
 		}
+		
 	}
 
 	/**

@@ -1,6 +1,4 @@
-package Main;
-
-import Entities.*;
+package main;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -13,6 +11,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import entities.*;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 

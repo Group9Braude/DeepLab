@@ -1,4 +1,4 @@
-package Main;
+package main;
 
 import java.io.IOException;
 import java.util.function.Function;
@@ -30,7 +30,6 @@ public class Main extends Application {
 	}
 	
 	public static void showMenu(String screen) throws IOException{
-		System.out.println("hi");
 		FXMLLoader loader = new FXMLLoader(); 
 		loader.setLocation(Main.class.getResource("/GUI/" + screen + ".fxml"));
 		mainLayout = loader.load();

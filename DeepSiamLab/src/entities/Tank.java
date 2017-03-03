@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 public class Tank extends GeneralMessage{
 	private String deepNum/*A serial number written by the diving club*/,

@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 public class Regulator extends GeneralMessage{
 	private String model,manufacturer,serialNum,KitChangeDate;

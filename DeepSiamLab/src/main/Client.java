@@ -1,7 +1,8 @@
-package Main;
+package main;
 
 import java.io.IOException;
-import Entities.*;
+
+import entities.*;
 import ocsf.client.AbstractClient;
 
 public class Client extends AbstractClient {
@@ -25,13 +26,6 @@ public class Client extends AbstractClient {
 		case "Incorrect":Windows.warning("Incorrect information. Try again.");
 			Worker.setCurrentWorker(new Worker());break;
 		case "Correct":
-			Worker.setCurrentWorker((Worker)msg);System.out.println("c");
-			try {
-				Main.showMenu("LoginWorkerScreen");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			Worker.setCurrentWorker((Worker)msg);
 			Windows.threadWarning("Welcome back " + Worker.getCurrentWorker().getfName());break;
 		}

@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 public class Customer extends GeneralMessage{
 private String name, lastName, custID, email;
