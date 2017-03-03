@@ -23,10 +23,10 @@ public class Client extends AbstractClient {
 		System.out.println("handleMessageFromServer");
 		switch(((GeneralMessage)msg).actionNow){
 		case "Incorrect":
-			Worker.setCurrentWorker(new Worker());
-			System.out.println("inc");break;
+			Worker.setCurrentWorker(new Worker());break;
 		case "Correct":
-			Worker.setCurrentWorker((Worker)msg);System.out.println("c");break;
+			Worker.setCurrentWorker((Worker)msg);break;
+		
 		}
 	}
 
