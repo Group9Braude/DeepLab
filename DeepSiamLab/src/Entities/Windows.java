@@ -29,6 +29,7 @@ public class Windows {
  * @param title
  * @return
  */
+	
 	public static int yesNo(String message, String title){
 		return(JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION));
 	}
