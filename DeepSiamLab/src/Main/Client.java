@@ -26,7 +26,14 @@ public class Client extends AbstractClient {
 			Worker.setCurrentWorker(new Worker());
 			System.out.println("inc");break;
 		case "Correct":
-			Worker.setCurrentWorker((Worker)msg);System.out.println("c");break;
+			Worker.setCurrentWorker((Worker)msg);System.out.println("c");
+			try {
+				Main.showMenu("LoginWorkerScreen");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+			break;
 		}
 	}
 

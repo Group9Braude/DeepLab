@@ -3,6 +3,10 @@ package Entities;
 import java.sql.Date;
 
 public class RegCheck extends GeneralMessage{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String FixDescription/*isProblemFix*/,deepNum,customerID;
 	private Date date;
 	private int isFinished;//After treatment is done,set 1

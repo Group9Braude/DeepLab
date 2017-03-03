@@ -16,7 +16,7 @@ public class Main extends Application {
 	public static Stage popup;
 	private static Stage primaryStage;
 	public static Parent mainLayout;
-	public static int port=3306;
+	public static int port=3307;
 	public static String host = "localhost";
 
 	public void start(Stage primaryStage) throws IOException {
