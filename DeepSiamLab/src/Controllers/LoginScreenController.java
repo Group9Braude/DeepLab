@@ -37,7 +37,7 @@ public class LoginScreenController {
 
 
 		if(!(checkText(idTextField.getText()) && checkText(passTextField.getText()))){
-			Window.warning("The characters :, \\, ' are not allowed.");	return;
+			Windows.warning("The characters :, \\, ' are not allowed.");	return;
 		}
 		if(idTextField.getText().isEmpty())
 			idTextField.setStyle("-fx-background-color: red;");

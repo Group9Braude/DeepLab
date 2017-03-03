@@ -22,10 +22,11 @@ public class Client extends AbstractClient {
 	protected void handleMessageFromServer(Object msg) {
 		System.out.println("handleMessageFromServer");
 		switch(((GeneralMessage)msg).actionNow){
-		case "Incorrect":
+		case "Incorrect":Windows.warning("Incorrect information. Try again.");
 			Worker.setCurrentWorker(new Worker());break;
 		case "Correct":
-			Worker.setCurrentWorker((Worker)msg);break;
+			Worker.setCurrentWorker((Worker)msg);
+			Windows.threadWarning("Welcome back " + Worker.getCurrentWorker().getfName());break;
 		
 		}
 	}
