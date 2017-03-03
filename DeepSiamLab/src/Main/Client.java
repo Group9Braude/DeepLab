@@ -22,9 +22,8 @@ public class Client extends AbstractClient {
 	protected void handleMessageFromServer(Object msg) {
 		System.out.println("handleMessageFromServer");
 		switch(((GeneralMessage)msg).actionNow){
-		case "Incorrect":
-			Worker.setCurrentWorker(new Worker());
-			System.out.println("inc");break;
+		case "Incorrect":Windows.warning("Incorrect information. Try again.");
+			Worker.setCurrentWorker(new Worker());break;
 		case "Correct":
 			Worker.setCurrentWorker((Worker)msg);System.out.println("c");
 			try {
@@ -32,8 +31,9 @@ public class Client extends AbstractClient {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}	
-			break;
+			}
+			Worker.setCurrentWorker((Worker)msg);
+			Windows.threadWarning("Welcome back " + Worker.getCurrentWorker().getfName());break;
 		}
 	}
 
