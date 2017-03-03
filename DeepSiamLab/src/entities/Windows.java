@@ -45,6 +45,11 @@ public class Windows {
 }
 
 	
+	public static void message(String message){
+		JOptionPane.showMessageDialog(null, message);
+	}
+	
+	
     private static Timer createCloseTimer(int seconds) {
         ActionListener close = new ActionListener() {
 

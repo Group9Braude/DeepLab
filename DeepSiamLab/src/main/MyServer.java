@@ -1,18 +1,16 @@
 package main;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
 
-import entities.*;
+import entities.GeneralMessage;
+import entities.Order;
+import entities.Worker;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 
@@ -38,14 +36,40 @@ public class MyServer extends AbstractServer {
 
 	@Override
 	protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
+		System.out.println("handleMessageFromClient");
 		switch(((GeneralMessage)msg).actionNow){
 		case "Login":
 			runQuery((Worker)msg, client);break;
-
+		case "IssueOrder":
+			issueOrder((Order)msg, client);
 		}
 	}
 	//PreparedStatement stmt = conn.prepareStatement("insert into x values(?, ?, ?)");
 
+	public void issueOrder(Order order, ConnectionToClient client){
+		System.out.println("issueorder server");
+		PreparedStatement preparedStmt;
+		Statement stmt;
+		int max=0;
+		try{
+			preparedStmt = (PreparedStatement) conn.prepareStatement("insert into orelDeepdivers.Orders(OrderNum, CustID, Description, "
+					+ "Date, Comments, Handled) values(?,?,?,?,?,?)");
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT MAX(OrderNum) FROM OrelDeepdivers.Orders");
+			rs.next();max=rs.getInt(1);
+			max++;
+			preparedStmt.setInt(1, max);
+			preparedStmt.setString(2, order.getCustID());
+			preparedStmt.setString(3, order.getDescription());
+			preparedStmt.setString(4, order.getDate());
+			preparedStmt.setString(5, order.getComments());
+			preparedStmt.setInt(6, order.getHandled());
+			preparedStmt.executeUpdate();
+			client.sendToClient(order);
+				
+		}catch(Exception e){e.printStackTrace();}
+	}
+	
 	public void runQuery(Worker worker, ConnectionToClient client){
 		Statement stmt;
 		try {stmt = conn.createStatement(); 
@@ -93,17 +117,11 @@ public class MyServer extends AbstractServer {
 				e.printStackTrace();
 			}
 			this.conn = DriverManager.getConnection("jdbc:sqlserver://188.121.44.212:1433;databaseName=orel;", "orelDeepdivers", "1qaz2wsx");
-			System.out.println("SQL Server Login Successful!");
-
-			System.out.println("here");
 			Statement stmt;
 			try {
 
 				stmt = conn.createStatement();
 				ResultSet rs = null;
-				rs = stmt.executeQuery("Select * From orelDeepdivers.Workers");
-				while(rs.next())
-					System.out.println(rs.getString(1));
 
 			} catch (SQLException e) {e.printStackTrace();}
 		}

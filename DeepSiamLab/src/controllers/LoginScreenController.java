@@ -13,8 +13,8 @@ import main.Main;
 public class LoginScreenController {
 	@FXML
 	private TextField idTextField, passTextField;
-
-
+	
+	
 	public void sendServer(Object msg, String actionNow){/******************************/
 		try {
 			((GeneralMessage)msg).actionNow = actionNow;
@@ -29,6 +29,8 @@ public class LoginScreenController {
 	public void Sleep(int time){
 		try{Thread.sleep(time);}catch(InterruptedException e){e.printStackTrace();}
 	}
+
+
 	public void  onLogin(){
 		idTextField.setStyle("-fx-background-color: white;");
 		passTextField.setStyle("-fx-background-color: white;");
@@ -51,7 +53,7 @@ public class LoginScreenController {
 		sendServer(worker, "Login");
 		while(Worker.getCurrentWorker()==null) Sleep(2);
 		System.out.println("ActionNow : " + Worker.getCurrentWorker().actionNow);
-		if(Worker.getCurrentWorker().actionNow.equals("Correct")){
+		if(Worker.getCurrentWorker().actionNow == null || Worker.getCurrentWorker().actionNow.equals("Correct")){
 			try {Main.showMenu("LoginWorkerScreen");} catch (IOException e) {e.printStackTrace();}
 		}
 		

@@ -28,6 +28,9 @@ public class Client extends AbstractClient {
 		case "Correct":
 			Worker.setCurrentWorker((Worker)msg);
 			Windows.threadWarning("Welcome back " + Worker.getCurrentWorker().getfName());break;
+		case "IssueOrder":
+			System.out.println("IssueOrder handlemessagefromserver");
+			Order.currentOrder.actionNow+=",";break;
 		}
 	}
 
