@@ -43,8 +43,8 @@ public class OrderController {
 	public void Sleep(int time){
 		try{Thread.sleep(time);}catch(InterruptedException e){e.printStackTrace();}
 	}
-	
-	
+
+
 
 	public OrderController(){
 	}
@@ -90,6 +90,11 @@ public class OrderController {
 			if(ccrCheckBox.isSelected())
 				description+="CCR:\n -Owner: "+ ccrOwnerTextField.getText() + "\n -Serial Number: " + ccrDeepNumTextField.getText() + "\n";
 
+			if(idTextField.getText().equals("")){
+				Windows.warning("You forget the customer's id!");
+				return;
+			}
+
 
 
 
@@ -104,13 +109,15 @@ public class OrderController {
 			if(ccrCheckBox.isSelected())
 				description+="CCR:\n -Owner: "+ ccrOwnerTextField.getText() + "\n -Serial Number: " + ccrDeepNumTextField.getText() + "\n";
 
-		}else if(!(ccrCheckBox.isSelected()&&tankCheckBox.isSelected()&&bcdCheckBox.isSelected()&&regulatorCheckBox.isSelected()))//Nothing is ticked
+		}
+		if(!(ccrCheckBox.isSelected()&&tankCheckBox.isSelected()&&bcdCheckBox.isSelected()&&regulatorCheckBox.isSelected())){//Nothing is ticked
 			if(Windows.yesNo("Are you sure you want nothing ticked?", "Sure?")==1)
-				return;
-
-		if(Windows.yesNo("Are you sure that you've TICKED everything needed?", "Be completely sure!")==1)
-			return;
+				return;}
 		
+
+
+		else if(Windows.yesNo("Are you sure that you've TICKED everything needed?", "Be completely sure!")==1)
+			return;
 		Order order = new Order(-1, idTextField.getText(), description,commentsTextArea.getText(), df.format(calobj.getTime()));
 		sendServer(order, "IssueOrder");
 		Order.currentOrder = new Order();
